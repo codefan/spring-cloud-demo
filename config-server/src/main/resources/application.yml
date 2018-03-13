@@ -14,7 +14,7 @@ spring:
       label: master
       server:
         git:
-          uri: http://gitlab.centit.com/gitlab/ctm/spring-cloud-config-server/
+          uri: http://gitlab.centit.com/gitlab/ctm/spring-cloud-demo/
           search-paths: respo
           username: accounts
           password: yhs@yhs1
