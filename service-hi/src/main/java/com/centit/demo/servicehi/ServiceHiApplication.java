@@ -22,7 +22,7 @@ public class ServiceHiApplication {
 	@Value("${server.port}")
 	String port;
 
-	@Value("${app.sayhi.greetingWords:'hello '}")
+	@Value("${app.sayhi.greetingWords:hello }")
 	String greetingWords;
 
 	@RequestMapping("/hi")

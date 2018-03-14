@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(value = "SERVICE-HI",fallback = DefaultServiceHi.class)
+@FeignClient(value = "SERVER-HI",fallback = DefaultServiceHi.class)
 public interface IServiceHi {
 
     @RequestMapping(value = "/hi",method = RequestMethod.GET)

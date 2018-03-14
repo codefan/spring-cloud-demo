@@ -8,7 +8,7 @@ server:
 
 spring:
   application:
-    name: SERVICE-HI
+    name: SERVER-HI
   cloud:
     config:
       label: master
