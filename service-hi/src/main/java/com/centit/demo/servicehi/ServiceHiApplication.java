@@ -22,11 +22,14 @@ public class ServiceHiApplication {
 	@Value("${server.port}")
 	String port;
 
+	@Value("${app.sayhi.greetingWords:'hello '}")
+	String greetingWords;
+
 	@RequestMapping("/hi")
 	public SayHello home(@RequestParam String name) {
 		SayHello greeting = new SayHello();
 		greeting.setUserName(name);
-		greeting.setGreetingWords("hello");
+		greeting.setGreetingWords(greetingWords);
 		greeting.setFromPort(Integer.valueOf(port));
 		greeting.setGreetingTime(new Date());
 		return greeting;
