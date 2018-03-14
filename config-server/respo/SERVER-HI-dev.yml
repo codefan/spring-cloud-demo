@@ -9,6 +9,13 @@ server:
 spring:
   application:
     name: SERVICE-HI
+  cloud:
+    config:
+      label: master
+      profile: dev
+      discovery:
+        enabled: true
+        serviceId: CONFIG-SERVER
 
 app:
   sayhi:
