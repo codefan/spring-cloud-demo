@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,15 +45,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.inMemoryAuthentication().getUserDetailsService()
-                .createUser(User.withUsername("user_1").password("{noop}123456").authorities("USER").build());
-        auth.inMemoryAuthentication().getUserDetailsService()
-                .createUser(User.withUsername("user_2").password("{noop}123456").authorities("USER").build());
-        auth.inMemoryAuthentication().getUserDetailsService()
-                .createUser(User.withUsername("client_1").password("{noop}123456").authorities("CLIENT").build());
-        auth.inMemoryAuthentication().getUserDetailsService()
-                .createUser(User.withUsername("client_2").password("{noop}123456").authorities("CLIENT").build());
-        auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance());//在此处应用自定义PasswordEncoder
+        /*auth.inMemoryAuthentication().withUser("user_1").password("{noop}123456").authorities("USER")
+                .and().withUser("user_2").password("{noop}123456").authorities("USER")
+                .and().withUser("client_1").password("{noop}123456").authorities("CLIENT")
+                .and().withUser("client_2").password("{noop}123456").authorities("CLIENT")
+                .and().passwordEncoder(NoOpPasswordEncoder.getInstance());//在此处应用自定义PasswordEncoder*/
+
+        UserDetailsManager userDetailsService = auth.inMemoryAuthentication().getUserDetailsService();
+        userDetailsService.createUser(User.withUsername("user_1").password("{noop}123456").authorities("USER").build());
+        userDetailsService.createUser(User.withUsername("user_2").password("{noop}123456").authorities("USER").build());
+        userDetailsService.createUser(User.withUsername("client_1").password("{noop}123456").authorities("CLIENT").build());
+        userDetailsService.createUser(User.withUsername("client_2").password("{noop}123456").authorities("CLIENT").build());
+        auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance());
 
     }
 
